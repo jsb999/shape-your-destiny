@@ -58,4 +58,52 @@ class AppTest {
     assertEquals(6, t.getArea(), 0.0001); // (3*4)/2
     assertEquals(3 + 4 + Math.sqrt(9 + 16)/*sqrt(25) = 5*/, t.getPerimeter(), 0.0001);
   }
+
+  // --- Square Tests ---
+  @Test
+  void testSquareAreaAndPerimeter() {
+      Square s = new Square(4.0);
+      assertEquals(16.0, s.getArea(), 0.0001, "Square area should be side^2");
+      assertEquals(16.0, s.getPerimeter(), 0.0001, "Square perimeter should be 4 * side");
+  }
+
+  @Test
+  void testSquareImplementsPolygon() {
+      Square s = new Square(5.0);
+      assertTrue(s instanceof Polygon, "Square should implement Polygon");
+      assertEquals(4, s.numberOfSides(), "Square should have 4 sides");
+  }
+
+  // --- IsoscelesRightTriangle Tests ---
+  @Test
+  void testIsoscelesRightTriangleArea() {
+      IsoscelesRightTriangle t = new IsoscelesRightTriangle(3.0);
+      // area = (leg * leg) / 2
+      assertEquals(4.5, t.getArea(), 0.0001, "Area should be (leg^2)/2");
+  }
+
+  @Test
+  void testIsoscelesRightTrianglePerimeter() {
+      IsoscelesRightTriangle t = new IsoscelesRightTriangle(3.0);
+      // perimeter = leg + leg + hypotenuse
+      double expected = 3.0 + 3.0 + Math.sqrt(18.0);
+      assertEquals(expected, t.getPerimeter(), 0.0001, "Perimeter should include both legs + hypotenuse");
+  }
+
+  @Test
+  void testIsoscelesRightTriangleInheritsPolygon() {
+      IsoscelesRightTriangle t = new IsoscelesRightTriangle(3.0);
+      assertTrue(t instanceof Polygon, "IsoscelesRightTriangle should implement Polygon via RightTriangle");
+      assertEquals(3, t.numberOfSides(), "Triangle should have 3 sides");
+  }
+
+  // --- Polygon General Test ---
+  @Test
+  void testPolygonPolymorphism() {
+      Polygon p = new Square(2.0); // polymorphic reference
+      assertEquals(4, p.numberOfSides(), "Polygon reference to Square should return 4 sides");
+
+      p = new IsoscelesRightTriangle(2.0);
+      assertEquals(3, p.numberOfSides(), "Polygon reference to Triangle should return 3 sides");
+  }
 }

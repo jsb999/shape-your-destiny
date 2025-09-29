@@ -1,6 +1,6 @@
 package org.example;
 
-public class Circle extends Shape{
+public class Circle extends Shape {
   //variables
   private double radius;
   
@@ -20,10 +20,12 @@ public class Circle extends Shape{
   }
   
   //override for getArea
+  @Override
   public double getArea(){
     return Math.PI * (radius * radius); // PIr^2
   }
   //override for getPerimeter
+  @Override
   public double getPerimeter(){
     return 2 * Math.PI * radius; // 2PIr;
   }

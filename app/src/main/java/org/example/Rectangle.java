@@ -1,6 +1,6 @@
 package org.example;
 
-public class Rectangle extends Shape{
+public class Rectangle extends Shape implements Polygon{
   //variables
   private double length;
   private double width;
@@ -26,11 +26,19 @@ public class Rectangle extends Shape{
   }
 
   //override for getArea
+  @Override
   public double getArea(){
     return length * width;
   }
   //override for getPerimeter
+  @Override
   public double getPerimeter(){
     return (2 * length) + (2 * width); // 2l + 2w
+  }
+
+  //override for polygon interface
+  @Override
+  public int numberOfSides(){
+    return 4;
   }
 }
